@@ -1,15 +1,13 @@
-volumes:
-  etc_wireguard:
-
+version: "3.8"
 services:
   wg-easy:
     environment:
-      # Change Language:
+       # Change Language:
       # (Supports: en, ua, ru, tr, no, pl, fr, de, ca, es, ko, vi, nl, is, pt, chs, cht, it, th, hi)
       - LANG=en
       # ⚠️ Required:
       # Change this to your host's public address
-      - WG_HOST=raspberrypi.local
+      - WG_HOST=1460469-cz52311.tw1.ru
 
       # Optional:
       # - PASSWORD_HASH=$$2y$$10$$hBCoykrB95WSzuV4fafBzOHWKu9sbyVa34GJr8VV5R/pIelfEMYyG (needs double $$, hash of 'foobar123'; see "How_to_generate_an_bcrypt_hash.md" for generate the hash)
@@ -33,6 +31,7 @@ services:
       # - ENABLE_PROMETHEUS_METRICS=false
       # - PROMETHEUS_METRICS_PASSWORD=$$2a$$12$$vkvKpeEAHD78gasyawIod.1leBMKg8sBwKW.pQyNsq78bXV3INf2G # (needs double $$, hash of 'prometheus_password'; see "How_to_generate_an_bcrypt_hash.md" for generate the hash)
 
+      
     image: ghcr.io/wg-easy/wg-easy
     container_name: wg-easy
     volumes:
@@ -48,3 +47,16 @@ services:
     sysctls:
       - net.ipv4.ip_forward=1
       - net.ipv4.conf.all.src_valid_mark=1
+
+
+  nginx:
+    image: weejewel/nginx-with-certbot
+    container_name: nginx
+    hostname: nginx
+    volumes:
+      - ~/.nginx/servers/:/etc/nginx/servers/
+      - ./.nginx/letsencrypt/:/etc/letsencrypt/
+    ports:
+      - "80:80/tcp"
+      - "443:443/tcp"
+    restart: unless-stopped
