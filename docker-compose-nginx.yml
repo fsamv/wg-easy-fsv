@@ -1,6 +1,7 @@
 volumes:
-  etc_wireguard:
-
+  - etc_wireguard:
+  - nginx_servers:
+  - nginx_letsencrypt:
 services:
   wg-easy:
     environment:
@@ -55,8 +56,8 @@ services:
     container_name: nginx
     hostname: nginx
     volumes:
-      - ~/.nginx/servers/:/etc/nginx/servers/
-      - ./.nginx/letsencrypt/:/etc/letsencrypt/
+      - nginx_servers:/etc/nginx/servers/
+      - nginx_letsencrypt:/etc/letsencrypt/
     ports:
       - "80:80/tcp"
       - "443:443/tcp"
