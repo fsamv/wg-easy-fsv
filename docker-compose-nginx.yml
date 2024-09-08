@@ -1,4 +1,6 @@
-version: "3.8"
+volumes:
+  etc_wireguard:
+
 services:
   wg-easy:
     environment:
@@ -30,7 +32,7 @@ services:
       # - WG_ENABLE_EXPIRES_TIME=true
       # - ENABLE_PROMETHEUS_METRICS=false
       # - PROMETHEUS_METRICS_PASSWORD=$$2a$$12$$vkvKpeEAHD78gasyawIod.1leBMKg8sBwKW.pQyNsq78bXV3INf2G # (needs double $$, hash of 'prometheus_password'; see "How_to_generate_an_bcrypt_hash.md" for generate the hash)
-      
+
     image: ghcr.io/wg-easy/wg-easy
     container_name: wg-easy
     volumes:
