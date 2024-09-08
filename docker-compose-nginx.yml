@@ -10,7 +10,7 @@ services:
       - WG_HOST=1460469-cz52311.tw1.ru
 
       # Optional:
-      # - PASSWORD_HASH=$$2y$$10$$hBCoykrB95WSzuV4fafBzOHWKu9sbyVa34GJr8VV5R/pIelfEMYyG (needs double $$, hash of 'foobar123'; see "How_to_generate_an_bcrypt_hash.md" for generate the hash)
+      - PASSWORD_HASH='$2a$12$wqZjLNaQV/nBM.Dnj5qOdOtoAhdLhyqnXEIw.2TLAtRSQeNmRdahi'
       # - PORT=51821
       # - WG_PORT=51820
       # - WG_CONFIG_PORT=92820
@@ -30,7 +30,6 @@ services:
       # - WG_ENABLE_EXPIRES_TIME=true
       # - ENABLE_PROMETHEUS_METRICS=false
       # - PROMETHEUS_METRICS_PASSWORD=$$2a$$12$$vkvKpeEAHD78gasyawIod.1leBMKg8sBwKW.pQyNsq78bXV3INf2G # (needs double $$, hash of 'prometheus_password'; see "How_to_generate_an_bcrypt_hash.md" for generate the hash)
-
       
     image: ghcr.io/wg-easy/wg-easy
     container_name: wg-easy
