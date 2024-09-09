@@ -1,7 +1,8 @@
 volumes:
-  - etc_wireguard:
-  - nginx_servers:
-  - nginx_letsencrypt:
+  etc_wireguard:
+  nginx_servers:
+  nginx_letsencrypt:
+
 services:
   wg-easy:
     environment:
@@ -13,7 +14,7 @@ services:
       - WG_HOST=1460469-cz52311.tw1.ru
 
       # Optional:
-      - PASSWORD_HASH='$2a$12$wqZjLNaQV/nBM.Dnj5qOdOtoAhdLhyqnXEIw.2TLAtRSQeNmRdahi'
+      - PASSWORD_HASH=$$2a$$12$$wqZjLNaQV/nBM.Dnj5qOdOtoAhdLhyqnXEIw.2TLAtRSQeNmRdahi
       # - PORT=51821
       # - WG_PORT=51820
       # - WG_CONFIG_PORT=92820
@@ -50,14 +51,14 @@ services:
       - net.ipv4.ip_forward=1
       - net.ipv4.conf.all.src_valid_mark=1
 
-
   nginx:
     image: weejewel/nginx-with-certbot
     container_name: nginx
     hostname: nginx
     volumes:
-      - nginx_servers:/etc/nginx/servers/
-      - nginx_letsencrypt:/etc/letsencrypt/
+      - nginx_servers/wg-easy.conf:/etc/nginx/servers/wg-easy.conf
+      - nginx_letsencrypt:/etc/letsencrypt
+      - nginx_passwd/.htpasswd:/etc/nginx/passwd/.htpasswd
     ports:
       - "80:80/tcp"
       - "443:443/tcp"
