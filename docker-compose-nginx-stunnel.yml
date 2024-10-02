@@ -68,7 +68,7 @@ services:
       - wg-network
 
   stunnel:
-    image: alpine/stunnel
+    build: ./stunnel/.
     container_name: stunnel
     volumes:
       - ./stunnel/stunnel.conf:/etc/stunnel/stunnel.conf
