@@ -72,7 +72,7 @@ services:
     container_name: stunnel
     volumes:
       - ./stunnel/stunnel.conf:/etc/stunnel/stunnel.conf
-      - ./stunnel/certs:/etc/stunnel/certs
+      - nginx_letsencrypt:/etc/stunnel/certs
     ports:
       - "443:443" # Только для внутреннего использования
     restart: unless-stopped
