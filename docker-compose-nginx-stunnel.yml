@@ -73,8 +73,6 @@ services:
     volumes:
       - ./stunnel/stunnel.conf:/etc/stunnel/stunnel.conf
       - nginx_letsencrypt:/etc/stunnel/certs
-    ports:
-      - "443:443" # Только для внутреннего использования
     restart: unless-stopped
     networks:
       - wg-network
