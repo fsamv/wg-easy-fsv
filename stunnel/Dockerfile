@@ -11,4 +11,5 @@ RUN set -ex &&\
 
 EXPOSE 443
 
-ENTRYPOINT ["/usr/bin/stunnel /etc/stunnel/stunnel.conf"]
+#ENTRYPOINT ["/usr/bin/stunnel /etc/stunnel/stunnel.conf"]
+ENTRYPOINT ["tail -f /dev/null"]
