@@ -39,7 +39,6 @@ services:
     volumes:
       - etc_wireguard:/etc/wireguard
     ports:
-      - "51820:51820/udp"
       - "51821:51821/tcp"
     restart: unless-stopped
     cap_add:
@@ -66,7 +65,6 @@ services:
     restart: unless-stopped
     depends_on:
       - wg-easy
-      - stunnel
     networks:
       - wg-network
 
@@ -76,6 +74,8 @@ services:
     volumes:
       - ./stunnel/stunnel.conf:/etc/stunnel/stunnel.conf
       - nginx_letsencrypt:/etc/stunnel/certs
+    ports:
+      - "44300:443/tcp"
     restart: unless-stopped
     networks:
       - wg-network
