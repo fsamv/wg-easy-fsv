@@ -60,5 +60,5 @@ services:
       - ./nginx/.htpasswd:/etc/nginx/passwd/.htpasswd
     ports:
       - "80:80/tcp"
-      - "44300:443/tcp"
+      - "44301:443/tcp"
     restart: unless-stopped
